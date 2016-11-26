@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 
 f = open('pdga_tournaments.csv','w')
-f.write('Date,Name,href,Class,Tier,Location' + '\n')
+f.write('Date,Year,Name,href,Class,Tier,Location' + '\n')
 
 print('Getting data...')
 
@@ -27,6 +27,6 @@ for y in range(1985,2017):
                     t_class = t.find('td', class_="views-field views-field-Classification").text.replace(',','').replace('\n','')
                     t_tier = t.find('td', class_="views-field views-field-Tier").text.replace(',','').replace('\n','')
                     t_location = t.find('td', class_="views-field views-field-Location").text.replace(',','').replace('\n','')
-                    f.write(t_date + ',' + t_name + ',' + t_href + ',' + t_class + ',' + t_tier + ',' + t_location + '\n')
+                    f.write(t_date + ',' + str(y) + ',' + t_name + ',' + t_href + ',' + t_class + ',' + t_tier + ',' + t_location + '\n')
 
 f.close()
